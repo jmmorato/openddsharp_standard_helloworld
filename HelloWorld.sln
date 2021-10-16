@@ -1,0 +1,75 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldPublisher", "HelloWorldPublisher\HelloWorldPublisher.csproj", "{E641DA92-E7B5-4825-9B66-47C513846FD8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMessage", "TestMessage\TestMessage.csproj", "{EDE7E99A-94BD-4748-85EE-69016B7C4909}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldSubscriber", "HelloWorldSubscriber\HelloWorldSubscriber.csproj", "{E36F6D99-D7D4-4196-B26F-F8881AAAE296}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		LinuxDebug|x64 = LinuxDebug|x64
+		LinuxDebug|x86 = LinuxDebug|x86
+		LinuxRelease|x64 = LinuxRelease|x64
+		LinuxRelease|x86 = LinuxRelease|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.Debug|x64.ActiveCfg = Debug|x64
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.Debug|x64.Build.0 = Debug|x64
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.Debug|x86.ActiveCfg = Debug|x86
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.Debug|x86.Build.0 = Debug|x86
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.LinuxDebug|x64.ActiveCfg = LinuxDebug|x64
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.LinuxDebug|x64.Build.0 = LinuxDebug|x64
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.LinuxDebug|x86.ActiveCfg = Debug|x64
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.LinuxRelease|x64.ActiveCfg = LinuxRelease|x64
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.LinuxRelease|x64.Build.0 = LinuxRelease|x64
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.LinuxRelease|x86.ActiveCfg = Debug|x64
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.Release|x64.ActiveCfg = Release|x64
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.Release|x64.Build.0 = Release|x64
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.Release|x86.ActiveCfg = Release|x86
+		{E641DA92-E7B5-4825-9B66-47C513846FD8}.Release|x86.Build.0 = Release|x86
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.Debug|x64.ActiveCfg = Debug|x64
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.Debug|x64.Build.0 = Debug|x64
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.Debug|x86.ActiveCfg = Debug|x86
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.Debug|x86.Build.0 = Debug|x86
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.LinuxDebug|x64.ActiveCfg = LinuxDebug|x64
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.LinuxDebug|x64.Build.0 = LinuxDebug|x64
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.LinuxDebug|x86.ActiveCfg = LinuxDebug|x86
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.LinuxDebug|x86.Build.0 = LinuxDebug|x86
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.LinuxRelease|x64.ActiveCfg = LinuxRelease|x64
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.LinuxRelease|x64.Build.0 = LinuxRelease|x64
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.LinuxRelease|x86.ActiveCfg = LinuxRelease|x86
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.LinuxRelease|x86.Build.0 = LinuxRelease|x86
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.Release|x64.ActiveCfg = Release|x64
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.Release|x64.Build.0 = Release|x64
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.Release|x86.ActiveCfg = Release|x86
+		{EDE7E99A-94BD-4748-85EE-69016B7C4909}.Release|x86.Build.0 = Release|x86
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.Debug|x64.ActiveCfg = Debug|x64
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.Debug|x64.Build.0 = Debug|x64
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.Debug|x86.ActiveCfg = Debug|x86
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.Debug|x86.Build.0 = Debug|x86
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.LinuxDebug|x64.ActiveCfg = LinuxDebug|x64
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.LinuxDebug|x64.Build.0 = LinuxDebug|x64
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.LinuxDebug|x86.ActiveCfg = Debug|x64
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.LinuxRelease|x64.ActiveCfg = LinuxRelease|x64
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.LinuxRelease|x64.Build.0 = LinuxRelease|x64
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.LinuxRelease|x86.ActiveCfg = Release|x64
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.Release|x64.ActiveCfg = Release|x64
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.Release|x64.Build.0 = Release|x64
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.Release|x86.ActiveCfg = Release|x86
+		{E36F6D99-D7D4-4196-B26F-F8881AAAE296}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BE5FB34-071E-4CF7-A672-DED2FB1850AC}
+	EndGlobalSection
+EndGlobal
