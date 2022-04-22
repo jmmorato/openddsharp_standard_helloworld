@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Platforms>x64;x86</Platforms>
     <RuntimeIdentifiers>win-x64;win-x86;linux-x64</RuntimeIdentifiers>
     <Configurations>Debug;Release;LinuxDebug;LinuxRelease</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.21289.1-beta" />
+    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.22111.86-beta" />
   </ItemGroup>
 
   <ItemGroup>

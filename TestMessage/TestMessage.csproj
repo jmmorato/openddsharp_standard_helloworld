@@ -4,10 +4,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
-    <Platforms>x64;x86</Platforms>
-    <Configurations>Debug;Release;LinuxDebug;LinuxRelease</Configurations>
+    <Configurations>Debug;Release;</Configurations>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <RuntimeIdentifiers>win-x64;win-x86;linux-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers>win-x64;win-x86;linux-x64;osx-x64</RuntimeIdentifiers>
   </PropertyGroup>
   
   <ItemGroup>
@@ -18,7 +17,30 @@
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp.Standard.IdlGenerator" Version="0.8.21289.1-beta" />
-    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.21289.1-beta" />
-  </ItemGroup>  
+    <PackageReference Include="OpenDDSharp.Standard.IdlGenerator" Version="0.8.22111.86-beta" />
+    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.22111.86-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <NativeWrapperWindows Include="$(IntermediateOutputPath)NativeProject\Release\TestMessageWrapper.dll" />
+    <ContentWithTargetPath Include="@(NativeWrapperWindows)" Visible="false" Condition="'$(IsWindows)'=='true'">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <TargetPath>TestMessageWrapper.dll</TargetPath>
+    </ContentWithTargetPath>
+	  
+    <NativeWrapperLinux Include="$(IntermediateOutputPath)NativeProject\libTestMessageWrapper.so" />
+    <ContentWithTargetPath Include="@(NativeWrapperLinux)" Visible="false" Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <TargetPath>libTestMessageWrapper.so</TargetPath>
+    </ContentWithTargetPath>
+      
+    <NativeWrapperOSX Include="$(IntermediateOutputPath)NativeProject\libTestMessageWrapper.dylib" />
+    <ContentWithTargetPath Include="@(NativeWrapperOSX)" Visible="false" Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <TargetPath>libTestMessageWrapper.dylib</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
 </Project>
