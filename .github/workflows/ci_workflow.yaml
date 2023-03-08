@@ -49,7 +49,10 @@ jobs:
 
       - name: Dotnet restore
         shell: bash
-        run: dotnet restore ${{ github.workspace }}/HelloWorld.sln --packages "${{ github.workspace }}/packages" --no-cache
+        run: |
+          dotnet restore ${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj --packages "${{ github.workspace }}/packages" --no-cache
+          dotnet restore ${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj --packages "${{ github.workspace }}/packages" --no-cache
+          dotnet restore ${{ github.workspace }}/TestMessage/TestMessage.csproj --packages "${{ github.workspace }}/packages" --no-cache
         working-directory: ${{ github.workspace }}
         
       - name: Dotnet build
