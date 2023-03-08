@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.23023.106" />
+    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.23061.107-beta" />
   </ItemGroup>
 
   <ItemGroup>
