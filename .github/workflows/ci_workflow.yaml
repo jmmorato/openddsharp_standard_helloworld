@@ -50,23 +50,23 @@ jobs:
       - name: Dotnet restore
         shell: bash
         run: |
-          dotnet restore ${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj --packages "${{ github.workspace }}/packages" --no-cache
-          dotnet restore ${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj --packages "${{ github.workspace }}/packages" --no-cache
-          dotnet restore ${{ github.workspace }}/TestMessage/TestMessage.csproj --packages "${{ github.workspace }}/packages" --no-cache
+          dotnet restore "${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj" --packages "${{ github.workspace }}/packages" --no-cache
+          dotnet restore "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --packages "${{ github.workspace }}/packages" --no-cache
+          dotnet restore "${{ github.workspace }}/TestMessage/TestMessage.csproj" --packages "${{ github.workspace }}/packages" --no-cache
         working-directory: ${{ github.workspace }}
         
       - name: Dotnet build
         shell: bash
         run: |
-          dotnet build ${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj --configuration Release --runtime ${{ matrix.runtime }}
-          dotnet build ${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj --configuration Release --runtime ${{ matrix.runtime }}
+          dotnet build "${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj" --configuration Release --runtime ${{ matrix.runtime }}
+          dotnet build "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --configuration Release --runtime ${{ matrix.runtime }}
         working-directory: ${{ github.workspace }}
         
       - name: Dotnet publish
         shell: bash
         run: |
-          dotnet publish ${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
-          dotnet publish ${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
+          dotnet publish "${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj" --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
+          dotnet publish "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
         working-directory: ${{ github.workspace }}
         
       - name: Artifacts
