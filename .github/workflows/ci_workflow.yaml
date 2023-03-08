@@ -58,8 +58,8 @@ jobs:
       - name: Dotnet build
         shell: bash
         run: |
-          dotnet build "${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj" --configuration Release --runtime ${{ matrix.runtime }}
-          dotnet build "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --configuration Release --runtime ${{ matrix.runtime }}
+          dotnet build "${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj" --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
+          dotnet build "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
         working-directory: ${{ github.workspace }}
         
       - name: Dotnet publish
@@ -69,10 +69,16 @@ jobs:
           dotnet publish "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
         working-directory: ${{ github.workspace }}
         
-      - name: Artifacts
+      - name: Artifact HelloWorldPublisher
         uses: actions/upload-artifact@v3
         with:
-          name: openddsharp-helloworld-${{ matrix.runtime }}
+          name: openddsharp-helloworld-publisher-${{ matrix.runtime }}
           path: |
-            ${{ github.workspace }}/HelloWorldPublisher/bin/x64/Release/net6.0/${{ matrix.runtime }}/publish
-            ${{ github.workspace }}/HelloWorldSubscriber/bin/x64/Release/net6.0/${{ matrix.runtime }}/publish
+            ${{ github.workspace }}/HelloWorldPublisher/bin/Release/net6.0/${{ matrix.runtime }}/publish/*
+            
+      - name: Artifact HelloWorldSubscriber
+        uses: actions/upload-artifact@v3
+        with:
+          name: openddsharp-helloworld-subscriber-${{ matrix.runtime }}
+          path: |
+            ${{ github.workspace }}/HelloWorldSubscriber/bin/Release/net6.0/${{ matrix.runtime }}/publish/*
