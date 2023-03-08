@@ -1,4 +1,4 @@
-module HelloWorld{
+module HelloWorld {
 	@topic
 	struct Message {
 		string Content;

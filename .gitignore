@@ -45,3 +45,9 @@ _ReSharper*/
 *.GhostDoc.xml
 **/*.previous.nugetreferenceswitcher
 project.lock.json
+
+# Finder MacOS
+**/.DS_Store
+
+# Rider settings
+.idea

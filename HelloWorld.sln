@@ -1,0 +1,28 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorldPublisher", "HelloWorldPublisher\HelloWorldPublisher.csproj", "{BFCAFDB1-9C05-43C7-BBCA-E1286FC846C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorldSubscriber", "HelloWorldSubscriber\HelloWorldSubscriber.csproj", "{FF559F39-9578-4AEC-B62A-E5527F1B4052}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMessage", "TestMessage\TestMessage.csproj", "{F528DA91-091D-4243-94B5-511414FD2989}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+		Debug|x64 = Debug|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFCAFDB1-9C05-43C7-BBCA-E1286FC846C4}.Release|x64.ActiveCfg = Release|x64
+		{BFCAFDB1-9C05-43C7-BBCA-E1286FC846C4}.Release|x64.Build.0 = Release|x64
+		{BFCAFDB1-9C05-43C7-BBCA-E1286FC846C4}.Debug|x64.ActiveCfg = Debug|x64
+		{BFCAFDB1-9C05-43C7-BBCA-E1286FC846C4}.Debug|x64.Build.0 = Debug|x64
+		{FF559F39-9578-4AEC-B62A-E5527F1B4052}.Release|x64.ActiveCfg = Release|x64
+		{FF559F39-9578-4AEC-B62A-E5527F1B4052}.Release|x64.Build.0 = Release|x64
+		{FF559F39-9578-4AEC-B62A-E5527F1B4052}.Debug|x64.ActiveCfg = Debug|x64
+		{FF559F39-9578-4AEC-B62A-E5527F1B4052}.Debug|x64.Build.0 = Debug|x64
+		{F528DA91-091D-4243-94B5-511414FD2989}.Release|x64.ActiveCfg = Release|x64
+		{F528DA91-091D-4243-94B5-511414FD2989}.Release|x64.Build.0 = Release|x64
+		{F528DA91-091D-4243-94B5-511414FD2989}.Debug|x64.ActiveCfg = Debug|x64
+		{F528DA91-091D-4243-94B5-511414FD2989}.Debug|x64.Build.0 = Debug|x64
+	EndGlobalSection
+EndGlobal

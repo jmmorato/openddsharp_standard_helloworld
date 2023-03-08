@@ -13,8 +13,8 @@ namespace HelloWorldPublisher
             Ace.Init();
 
             // , "-DCPSDebugLevel", "10", "-ORBLogFile", "LogFile.log", "-ORBDebugLevel", "10"
-            DomainParticipantFactory dpf = ParticipantService.Instance.GetDomainParticipantFactory("-DCPSConfigFile", "rtps.ini");
-            DomainParticipant participant = dpf.CreateParticipant(42);
+            var dpf = ParticipantService.Instance.GetDomainParticipantFactory("-DCPSConfigFile", "rtps.ini");
+            var participant = dpf.CreateParticipant(42);
             if (participant == null)
             {
                 throw new Exception("Could not create the participant");
@@ -28,19 +28,19 @@ namespace HelloWorldPublisher
             }
 
             var test = support.GetTypeName();
-            Topic topic = participant.CreateTopic("MessageTopic", support.GetTypeName());
+            var topic = participant.CreateTopic("MessageTopic", support.GetTypeName());
             if (topic == null)
             {
                 throw new Exception("Could not create the message topic");
             }
 
-            Publisher publisher = participant.CreatePublisher();
+            var publisher = participant.CreatePublisher();
             if (publisher == null)
             {
                 throw new Exception("Could not create the publisher");
             }
 
-            DataWriter writer = publisher.CreateDataWriter(topic);
+            var writer = publisher.CreateDataWriter(topic);
             if (writer == null)
             {
                 throw new Exception("Could not create the data writer");
