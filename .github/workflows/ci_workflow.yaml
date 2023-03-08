@@ -19,13 +19,16 @@ jobs:
       fail-fast: false
       matrix:
         os: [ windows-latest, ubuntu-latest, macos-latest ]
-        include:
+        runtime: [win-x64, win-x86, linux-x64, osx-x64]
+        exclude:
           - os: windows-latest
-            runtime: [win-x64, win-x86]
+            runtime: [linux-x64, osx-x64]
+          - os: windows-latest
+            runtime: osx-x64
           - os: ubuntu-latest
-            runtime: linux-x64
+            runtime: [win-x64, win-x86, osx-x64]
           - os: macos-latest
-            runtime: macos-x64
+            runtime: [win-x64, win-x86, linux-x64]
 
     runs-on: ${{ matrix.os }}
 
@@ -55,7 +58,7 @@ jobs:
           dotnet publish ${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
         working-directory: ${{ github.workspace }}
         
-      - name: Artifacts OpenDDS libraries
+      - name: Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: openddsharp-helloworld-${{ matrix.runtime }}
