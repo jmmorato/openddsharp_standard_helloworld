@@ -1,0 +1,64 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '0 1 * * SUN'
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:    
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-latest, ubuntu-latest, macos-latest ]
+        include:
+          - os: windows-latest
+            runtime: [win-x64, win-x86]
+          - os: ubuntu-latest
+            runtime: linux-x64
+          - os: macos-latest
+            runtime: macos-x64
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Dotnet restore
+        shell: bash
+        run: dotnet restore ${{ github.workspace }}/HelloWorld.sln --packages "${{ github.workspace }}/packages" --no-cache
+        working-directory: ${{ github.workspace }}
+        
+      - name: Dotnet build
+        shell: bash
+        run: |
+          dotnet build ${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj --configuration Release --runtime ${{ matrix.runtime }}
+          dotnet build ${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj --configuration Release --runtime ${{ matrix.runtime }}
+        working-directory: ${{ github.workspace }}
+        
+      - name: Dotnet publish
+        shell: bash
+        run: |
+          dotnet publish ${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
+          dotnet publish ${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
+        working-directory: ${{ github.workspace }}
+        
+      - name: Artifacts OpenDDS libraries
+        uses: actions/upload-artifact@v3
+        with:
+          name: openddsharp-helloworld-${{ matrix.runtime }}
+          path: |
+            ${{ github.workspace }}/HelloWorldPublisher/bin/x64/Release/net6.0/${{ matrix.runtime }}/publish
+            ${{ github.workspace }}/HelloWorldSubscriber/bin/x64/Release/net6.0/${{ matrix.runtime }}/publish
