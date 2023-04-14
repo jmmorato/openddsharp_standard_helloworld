@@ -3,16 +3,16 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <Platforms>x64;x86</Platforms>
+    <Platforms>x64;x86;ARM64;</Platforms>
     <Configurations>Debug;Release</Configurations>
-    <RuntimeIdentifiers>win-x64;win-x86;linux-x64;osx-x64;</RuntimeIdentifiers>
+    <RuntimeIdentifiers>win-x64;win-x86;linux-x64;osx-x64;osx-arm64;</RuntimeIdentifiers>
     <RuntimeIdentifier Condition="'$([MSBuild]::IsOSPlatform(Windows))'">win-x64</RuntimeIdentifier>
     <RuntimeIdentifier Condition="'$([MSBuild]::IsOSPlatform(Linux))'">linux-x64</RuntimeIdentifier>
     <RuntimeIdentifier Condition="'$([MSBuild]::IsOSPlatform(OSX))'">osx-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.23061.107-beta" />
+    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.23088.229-beta" />
   </ItemGroup>
 
   <ItemGroup>

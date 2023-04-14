@@ -4,7 +4,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
-    <Platforms>x64;x86</Platforms>
+    <Platforms>x64;x86;ARM64;</Platforms>
     <Configurations>Debug;Release</Configurations>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <RuntimeIdentifiers>win-x64;win-x86;linux-x64;osx-x64;osx-arm64</RuntimeIdentifiers>
@@ -18,8 +18,8 @@
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp.Standard.IdlGenerator" Version="0.8.23061.107-beta" />
-    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.23061.107-beta" />
+    <PackageReference Include="OpenDDSharp.Standard.IdlGenerator" Version="0.8.23088.229-beta" />
+    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.23088.229-beta" />
   </ItemGroup>
 
   <ItemGroup>
