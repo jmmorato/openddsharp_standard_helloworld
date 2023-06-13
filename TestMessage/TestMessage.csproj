@@ -2,7 +2,7 @@
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
     <Platforms>x64;x86;ARM64;</Platforms>
     <Configurations>Debug;Release</Configurations>
@@ -11,15 +11,15 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Compile Include="Helpers\MarshalHelper.cs" />
     <Compile Include="TestMessageTypeSupport.cs" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp.Standard.IdlGenerator" Version="0.8.23088.229-beta" />
-    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.23088.229-beta" />
+    <PackageReference Include="OpenDDSharp.Standard.IdlGenerator" Version="0.8.23162.249-beta" />
+    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.23162.249-beta" />
+    <PackageReference Include="OpenDDSharp.Marshaller" Version="0.8.23162.249-beta" />
   </ItemGroup>
 
   <ItemGroup>
