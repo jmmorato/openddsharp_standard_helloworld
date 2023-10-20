@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp.Standard" Version="0.8.23162.249-beta" />
+    <PackageReference Include="OpenDDSharp" Version="3.250.2-beta20065" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Content Include="Properties\launchSettings.json" />
   </ItemGroup>
 
 </Project>
