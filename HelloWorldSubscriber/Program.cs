@@ -1,45 +1,53 @@
-﻿using HelloWorld;
+﻿using System;
+using System.Collections.Generic;
 using OpenDDSharp;
 using OpenDDSharp.DDS;
 using OpenDDSharp.OpenDDS.DCPS;
-using System;
-using System.Collections.Generic;
+using HelloWorld;
 
 namespace HelloWorldSubscriber
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             Ace.Init();
 
-            DomainParticipantFactory dpf = ParticipantService.Instance.GetDomainParticipantFactory("-DCPSConfigFile", "rtps.ini", "-DCPSDebugLevel", "10", "-ORBLogFile", "LogFile.log", "-ORBDebugLevel", "10");
-            DomainParticipant participant = dpf.CreateParticipant(42);
+            var dpf = ParticipantService.Instance.GetDomainParticipantFactory("-DCPSConfigFile", "rtps.ini",
+                "-DCPSDebugLevel", "10", "-ORBLogFile", "LogFile.log", "-ORBDebugLevel", "10");
+
+            var participant = dpf.CreateParticipant(42);
             if (participant == null)
             {
                 throw new Exception("Could not create the participant");
             }
 
             MessageTypeSupport support = new();
-            ReturnCode result = support.RegisterType(participant, support.GetTypeName());
+            var result = support.RegisterType(participant, support.GetTypeName());
             if (result != ReturnCode.Ok)
             {
-                throw new Exception("Could not register type: " + result.ToString());
+                throw new Exception("Could not register type: " + result);
             }
 
-            Topic topic = participant.CreateTopic("MessageTopic", support.GetTypeName());
+            var topic = participant.CreateTopic("MessageTopic", support.GetTypeName());
             if (topic == null)
             {
                 throw new Exception("Could not create the message topic");
             }
 
-            Subscriber subscriber = participant.CreateSubscriber();
+            var subscriber = participant.CreateSubscriber();
             if (subscriber == null)
             {
                 throw new Exception("Could not create the subscriber");
             }
 
-            DataReader reader = subscriber.CreateDataReader(topic);
+            var qos = new DataReaderQos
+            {
+                Reliability = { Kind = ReliabilityQosPolicyKind.ReliableReliabilityQos },
+                History = { Kind = HistoryQosPolicyKind.KeepAllHistoryQos },
+                Durability = { Kind = DurabilityQosPolicyKind.TransientLocalDurabilityQos },
+            };
+            var reader = subscriber.CreateDataReader(topic, qos);
             if (reader == null)
             {
                 throw new Exception("Could not create the message data reader");
@@ -48,27 +56,31 @@ namespace HelloWorldSubscriber
 
             while (true)
             {
-                StatusMask mask = messageReader.StatusChanges;
+                var mask = messageReader.StatusChanges;
                 if ((mask & StatusKind.DataAvailableStatus) != 0)
                 {
-                    List<Message> receivedData = new();
-                    List<SampleInfo> receivedInfo = new();
+                    var receivedData = new List<Message>();
+                    var receivedInfo = new List<SampleInfo>();
                     result = messageReader.Take(receivedData, receivedInfo);
 
                     if (result == ReturnCode.Ok)
                     {
-                        bool messageReceived = false;
-                        for (int i = 0; i < receivedData.Count; i++)
+                        var messageReceived = false;
+                        for (var i = 0; i < receivedData.Count; i++)
                         {
-                            if (receivedInfo[i].ValidData)
+                            if (!receivedInfo[i].ValidData)
                             {
-                                Console.WriteLine(receivedData[i].Content);
-                                messageReceived = true;
+                                continue;
                             }
+
+                            Console.WriteLine(receivedData[i].Content);
+                            messageReceived = true;
                         }
 
                         if (messageReceived)
+                        {
                             break;
+                        }
                     }
                 }
 

@@ -1,19 +1,20 @@
-﻿using HelloWorld;
+﻿using System;
 using OpenDDSharp;
 using OpenDDSharp.DDS;
 using OpenDDSharp.OpenDDS.DCPS;
-using System;
+using HelloWorld;
 
 namespace HelloWorldPublisher
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             Ace.Init();
 
-            // , "-DCPSDebugLevel", "10", "-ORBLogFile", "LogFile.log", "-ORBDebugLevel", "10"
-            var dpf = ParticipantService.Instance.GetDomainParticipantFactory("-DCPSConfigFile", "rtps.ini");
+            var dpf = ParticipantService.Instance.GetDomainParticipantFactory("-DCPSConfigFile", "rtps.ini",
+                "-DCPSDebugLevel", "10", "-ORBLogFile", "LogFile.log", "-ORBDebugLevel", "10");
+
             var participant = dpf.CreateParticipant(42);
             if (participant == null)
             {
@@ -21,13 +22,12 @@ namespace HelloWorldPublisher
             }
 
             MessageTypeSupport support = new();
-            ReturnCode result = support.RegisterType(participant, support.GetTypeName());
+            var result = support.RegisterType(participant, support.GetTypeName());
             if (result != ReturnCode.Ok)
             {
-                throw new Exception("Could not register type: " + result.ToString());
+                throw new Exception("Could not register type: " + result);
             }
 
-            var test = support.GetTypeName();
             var topic = participant.CreateTopic("MessageTopic", support.GetTypeName());
             if (topic == null)
             {
@@ -40,7 +40,13 @@ namespace HelloWorldPublisher
                 throw new Exception("Could not create the publisher");
             }
 
-            var writer = publisher.CreateDataWriter(topic);
+            var qos = new DataWriterQos
+            {
+                Reliability = { Kind = ReliabilityQosPolicyKind.ReliableReliabilityQos },
+                History = { Kind = HistoryQosPolicyKind.KeepAllHistoryQos },
+                Durability = { Kind = DurabilityQosPolicyKind.TransientLocalDurabilityQos },
+            };
+            var writer = publisher.CreateDataWriter(topic, qos);
             if (writer == null)
             {
                 throw new Exception("Could not create the data writer");

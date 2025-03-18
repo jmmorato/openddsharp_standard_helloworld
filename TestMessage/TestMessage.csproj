@@ -2,8 +2,8 @@
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <LangVersion>7.3</LangVersion>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <Platforms>x64;x86;ARM64;</Platforms>
     <Configurations>Debug;Release</Configurations>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
@@ -13,9 +13,9 @@
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp.IdlGenerator" Version="3.250.2" />
-    <PackageReference Include="OpenDDSharp" Version="3.250.2" />
-    <PackageReference Include="OpenDDSharp.Marshaller" Version="3.250.2" />
+    <PackageReference Include="OpenDDSharp.IdlGenerator" Version="3.310.1" />
+    <PackageReference Include="OpenDDSharp" Version="3.310.1" />
+    <PackageReference Include="OpenDDSharp.Marshaller" Version="3.310.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,17 +2,21 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Platforms>x64;x86;ARM64;</Platforms>
     <Configurations>Debug;Release</Configurations>
+    <IsARM64 Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64'">true</IsARM64>
+    <IsX64 Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64'">true</IsX64>
     <RuntimeIdentifiers>win-x64;win-x86;linux-x64;osx-x64;osx-arm64;</RuntimeIdentifiers>
-    <RuntimeIdentifier Condition="'$([MSBuild]::IsOSPlatform(Windows))'">win-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$([MSBuild]::IsOSPlatform(Windows))' And '$(Platform)'=='x64'">win-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$([MSBuild]::IsOSPlatform(Windows))' And '$(Platform)'=='x86'">win-x86</RuntimeIdentifier>
     <RuntimeIdentifier Condition="'$([MSBuild]::IsOSPlatform(Linux))'">linux-x64</RuntimeIdentifier>
-    <RuntimeIdentifier Condition="'$([MSBuild]::IsOSPlatform(OSX))'">osx-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="$([MSBuild]::IsOSPlatform('OSX')) And '$(IsX64)'=='true'">osx-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="$([MSBuild]::IsOSPlatform('OSX')) And '$(IsARM64)'=='true'">osx-arm64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp" Version="3.250.2" />
+    <PackageReference Include="OpenDDSharp" Version="3.310.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,3 +1,3 @@
-# OpenDDSharp Standard Hello World
+# OpenDDSharp Hello World
 
-The "Get Started" tutorial code for OpenDDSharp Standard.
+The [Getting Started](https://www.openddsharp.com/articles/getting_started.html) tutorial code for OpenDDSharp.
