@@ -14,29 +14,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:    
+  build:
     strategy:
       fail-fast: false
       matrix:
-        os: [ windows-latest, ubuntu-latest, macos-latest ]
-        runtime: [win-x64, win-x86, linux-x64, osx-x64]
-        exclude:
-          - os: windows-latest
-            runtime: linux-x64
-          - os: windows-latest
-            runtime: osx-x64
-          - os: ubuntu-latest
-            runtime: win-x64
-          - os: ubuntu-latest
+        include:
+          - os: windows-2019
             runtime: win-x86
-          - os: ubuntu-latest
-            runtime: osx-x64
-          - os: macos-latest
+            build_platform: x86
+          - os: windows-2019
             runtime: win-x64
-          - os: macos-latest
+            build_platform: x64
+          - os: windows-2022
             runtime: win-x86
-          - os: macos-latest
+            build_platform: x86
+          - os: windows-2022
+            runtime: win-x64
+            build_platform: x64
+          - os: windows-2025
+            runtime: win-x64
+            build_platform: x64
+          - os: windows-2025
+            runtime: win-x86
+            build_platform: x86
+          - os: ubuntu-22.04
             runtime: linux-x64
+            build_platform: x64
+          - os: ubuntu-24.04
+            runtime: linux-x64
+            build_platform: x64
+          - os: ubuntu-22.04-arm
+            runtime: linux-arm64
+            build_platform: ARM64
+          - os: ubuntu-24.04-arm
+            runtime: linux-arm64
+            build_platform: ARM64
+          - os: macos-13
+            runtime: osx-x64
+            build_platform: x64
+          - os: macos-14
+            runtime: osx-arm64
+            build_platform: ARM64
 
     runs-on: ${{ matrix.os }}
 
@@ -45,7 +63,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Dotnet restore
         shell: bash
@@ -54,31 +72,31 @@ jobs:
           dotnet restore "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --packages "${{ github.workspace }}/packages" --no-cache
           dotnet restore "${{ github.workspace }}/TestMessage/TestMessage.csproj" --packages "${{ github.workspace }}/packages" --no-cache
         working-directory: ${{ github.workspace }}
-        
+
       - name: Dotnet build
         shell: bash
         run: |
-          dotnet build "${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj" --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
-          dotnet build "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
+          dotnet build "${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj" --configuration Release --runtime ${{ matrix.runtime }} --self-contained
+          dotnet build "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --configuration Release --runtime ${{ matrix.runtime }} --self-contained
         working-directory: ${{ github.workspace }}
-        
+
       - name: Dotnet publish
         shell: bash
         run: |
-          dotnet publish "${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj" --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
-          dotnet publish "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --configuration Release --runtime ${{ matrix.runtime }} --no-self-contained
+          dotnet publish "${{ github.workspace }}/HelloWorldPublisher/HelloWorldPublisher.csproj" --configuration Release --runtime ${{ matrix.runtime }} --self-contained
+          dotnet publish "${{ github.workspace }}/HelloWorldSubscriber/HelloWorldSubscriber.csproj" --configuration Release --runtime ${{ matrix.runtime }} --self-contained
         working-directory: ${{ github.workspace }}
-        
+
       - name: Artifact HelloWorldPublisher
         uses: actions/upload-artifact@v3
         with:
           name: openddsharp-helloworld-publisher-${{ matrix.runtime }}
           path: |
-            ${{ github.workspace }}/HelloWorldPublisher/bin/Release/net6.0/${{ matrix.runtime }}/publish/*
-            
+            ${{ github.workspace }}/HelloWorldPublisher/bin/Release/net8.0/${{ matrix.runtime }}/publish/*
+
       - name: Artifact HelloWorldSubscriber
         uses: actions/upload-artifact@v3
         with:
           name: openddsharp-helloworld-subscriber-${{ matrix.runtime }}
           path: |
-            ${{ github.workspace }}/HelloWorldSubscriber/bin/Release/net6.0/${{ matrix.runtime }}/publish/*
+            ${{ github.workspace }}/HelloWorldSubscriber/bin/Release/net8.0/${{ matrix.runtime }}/publish/*
