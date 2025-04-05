@@ -88,14 +88,14 @@ jobs:
         working-directory: ${{ github.workspace }}
 
       - name: Artifact HelloWorldPublisher
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: openddsharp-helloworld-publisher-${{ matrix.runtime }}
           path: |
             ${{ github.workspace }}/HelloWorldPublisher/bin/Release/net8.0/${{ matrix.runtime }}/publish/*
 
       - name: Artifact HelloWorldSubscriber
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: openddsharp-helloworld-subscriber-${{ matrix.runtime }}
           path: |
