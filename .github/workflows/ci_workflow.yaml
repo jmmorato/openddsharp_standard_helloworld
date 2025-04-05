@@ -90,13 +90,13 @@ jobs:
       - name: Artifact HelloWorldPublisher
         uses: actions/upload-artifact@v4
         with:
-          name: openddsharp-helloworld-publisher-${{ matrix.runtime }}
+          name: openddsharp-helloworld-publisher-${{ matrix.os }}-${{ matrix.runtime }}
           path: |
             ${{ github.workspace }}/HelloWorldPublisher/bin/Release/net8.0/${{ matrix.runtime }}/publish/*
 
       - name: Artifact HelloWorldSubscriber
         uses: actions/upload-artifact@v4
         with:
-          name: openddsharp-helloworld-subscriber-${{ matrix.runtime }}
+          name: openddsharp-helloworld-subscriber-${{ matrix.os }}-${{ matrix.runtime }}
           path: |
             ${{ github.workspace }}/HelloWorldSubscriber/bin/Release/net8.0/${{ matrix.runtime }}/publish/*
