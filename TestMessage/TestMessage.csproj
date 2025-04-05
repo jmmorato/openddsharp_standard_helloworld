@@ -13,9 +13,9 @@
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp.IdlGenerator" Version="3.310.1" />
-    <PackageReference Include="OpenDDSharp" Version="3.310.1" />
-    <PackageReference Include="OpenDDSharp.Marshaller" Version="3.310.1" />
+    <PackageReference Include="OpenDDSharp.IdlGenerator" Version="3.310.2-beta20004" />
+    <PackageReference Include="OpenDDSharp" Version="3.310.2-beta20004" />
+    <PackageReference Include="OpenDDSharp.Marshaller" Version="3.310.2-beta20004" />
   </ItemGroup>
 
   <ItemGroup>

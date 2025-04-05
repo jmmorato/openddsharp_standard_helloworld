@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenDDSharp" Version="3.310.1" />
+    <PackageReference Include="OpenDDSharp" Version="3.310.2-beta20004" />
   </ItemGroup>
 
   <ItemGroup>
